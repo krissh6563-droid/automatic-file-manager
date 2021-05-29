@@ -1,22 +1,27 @@
 import shutil
 import os 
+from win10toast import ToastNotifier
 
-#function tp check file exit to the destinatio folder or not
-def file_check(source_path, des_path):
-    dir = os.listdir(des_path)
+toast = ToastNotifier()
+toast.show_toast("File Organiser","Process has been started",duration=30)
+
+
+
+
        
 #function to make a foler named Executable
-def folder_create(source_path):
-    dir = os.listdir(source_path)
-    for item in dir:
-        if item.endswith('.exe') or item.endswith('.msi') :
-            os.chdir(r"C:\Users\Shri Krishan\Downloads")
-            os.mkdir("Executable files")
-            break
-        elif item.endswith('.zip'):
-            os.chdir(r"C:\Users\Shri Krishan\Downloads")
-            os.mkdir("Zip files")
-            break
+def folder_create():
+    try:
+        os.chdir(r"C:\Users\Shri Krishan\Downloads")
+        os.mkdir("Executable_files")
+    except:
+        pass
+    try:
+        os.chdir(r"C:\Users\Shri Krishan\Downloads")
+        os.mkdir("Zip_files")
+    except:
+        pass
+    
 
 #function to move file
 def move_file(source_path, des_path):
@@ -33,7 +38,7 @@ if __name__ == "__main__":
     dir = os.listdir(r"C:\Users\Shri Krishan\Downloads")
     
     #run folder create function to create Executable folder
-    folder_create(source_path)
+    folder_create()
 
     for item in dir:
         if item.endswith('.png') or item.endswith('.jpeg') or item.endswith('.jpg') or item.endswith('.gif') or item.endswith('.raw'):
@@ -44,9 +49,9 @@ if __name__ == "__main__":
             des_path  = r"C:\Users\Shri Krishan\Pictures"
             #move the file to destination folder
             try:
-                move_file(source_path,des_path)
+                shutil.move(source_path,des_path)
             except:
-                print("file already exit")
+                pass
 
             
         
@@ -60,7 +65,7 @@ if __name__ == "__main__":
             try:
                 move_file(source_path,des_path)
             except:
-                print("file already exit")
+                pass
     
         elif item.endswith('.mp3') or item.endswith('.wav') or item.endswith('.m4a') or item.endswith('.flac') or item.endswith('.wma') or item.endswith('.aac'):
             temp = item
@@ -72,7 +77,7 @@ if __name__ == "__main__":
             try:
                 move_file(source_path,des_path)
             except:
-                print("file already exit")
+                pass
 
         elif item.endswith('.txt') or item.endswith('.doc') or item.endswith('.docx') or item.endswith('.pdf') or item.endswith('.ppt') or item.endswith('.pptx') or item.endswith('.xls') or item.endswith('.xlsx') or item.endswith('.odt'):
             temp = item
@@ -84,29 +89,29 @@ if __name__ == "__main__":
             try:
                 move_file(source_path,des_path)
             except:
-                print("file already exit")
+                pass
 
         elif item.endswith('.exe') or item.endswith('.msi'):
             temp = item
             #source path 
             source_path  = r"C:\Users\Shri Krishan\Downloads"  + "\\" +  temp
             #destination path 
-            des_path  = r"C:\Users\Shri Krishan\Downloads\Executable files"
+            des_path  = r"C:\Users\Shri Krishan\Downloads\Executable_files"
             try:
                 move_file(source_path,des_path)
             except:
-                print("file already exit")
+                pass
 
         elif item.endswith('.zip'):
             temp = item
             #source path 
             source_path  = r"C:\Users\Shri Krishan\Downloads"  + "\\" +  temp
             #destination path 
-            des_path  = r"C:\Users\Shri Krishan\Downloads\Zip files"
+            des_path  = r"C:\Users\Shri Krishan\Downloads\Zip_files"
             try:
                 move_file(source_path,des_path)
             except:
-                print("file already exit")
+                pass
     
 
 

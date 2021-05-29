@@ -1,0 +1,1 @@
+CreateObject("Wscript.Shell").Run  "C:\Users\Shri Krishan\Desktop\move_file_automatic\organiser.bat", 0 , True
